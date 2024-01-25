@@ -89,7 +89,7 @@ public class ReviewController {
         mav.setViewName("review/form");
         mav.addObject("review", dto);
         mav.addObject("action", uri);
-        mav.addObject("games",gameService.findAll());
+        mav.addObject("games",gameService.findAllSorted(Sort.by("name").ascending()));
         return mav;
     }
 

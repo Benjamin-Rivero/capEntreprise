@@ -120,11 +120,11 @@ public class GameController {
         mav.addObject("game", dto);
         mav.addObject("action", uri);
         mav.addObject("isEdit", isEdit);
-        mav.addObject("publishers",publisherService.findAll());
-        mav.addObject("genres",genreService.findAll());
+        mav.addObject("publishers",publisherService.findAllSorted(Sort.by("name").ascending()));
+        mav.addObject("genres",genreService.findAllSorted(Sort.by("name").ascending()));
         mav.addObject("classifications",classificationService.findAll());
-        mav.addObject("platforms",platformService.findAll());
-        mav.addObject("businessModels",businessModelService.findAll());
+        mav.addObject("platforms",platformService.findAllSorted(Sort.by("name").ascending()));
+        mav.addObject("businessModels",businessModelService.findAllSorted(Sort.by("name").ascending()));
         return mav;
     }
 

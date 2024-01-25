@@ -10,6 +10,13 @@
         <c:if test="${review.moderator != null}">
             <p>Modéré par ${review.moderator.username}</p>
         </c:if>
+
+        <security:authorize access="hasRole('MODERATOR')">
+            <c:if test="${review.moderator==null}">
+                <a class="btn btn-success w-10" href="/avis/${review.id}/validate">Valider</a>
+            </c:if>
+            <a class="btn btn-danger w-10" href="/avis/${review.id}/refuse">Supprimer</a>
+        </security:authorize>
     </div>
 
 <%@ include file="../footer.jsp" %>

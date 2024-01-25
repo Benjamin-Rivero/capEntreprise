@@ -4,13 +4,14 @@ import fr.benjamin.cap_entreprise.entity.BusinessModel;
 import fr.benjamin.cap_entreprise.repository.BusinessModelRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class BusinessModelService {
+public class BusinessModelService implements SortingService<BusinessModel>{
 
     private final BusinessModelRepository businessModelRepository;
 
@@ -21,5 +22,10 @@ public class BusinessModelService {
 
     public List<BusinessModel> findAll() {
         return businessModelRepository.findAll();
+    }
+
+    @Override
+    public List<BusinessModel> findAllSorted(Sort sort) {
+        return businessModelRepository.findAll(sort);
     }
 }

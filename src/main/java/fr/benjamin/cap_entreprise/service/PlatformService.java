@@ -4,13 +4,14 @@ import fr.benjamin.cap_entreprise.entity.Platform;
 import fr.benjamin.cap_entreprise.repository.PlatformRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class PlatformService {
+public class PlatformService implements SortingService<Platform>{
 
     private final PlatformRepository platformRepository;
 
@@ -21,5 +22,10 @@ public class PlatformService {
 
     public List<Platform> findAll() {
         return platformRepository.findAll();
+    }
+
+    @Override
+    public List<Platform> findAllSorted(Sort sort) {
+        return platformRepository.findAll(sort);
     }
 }

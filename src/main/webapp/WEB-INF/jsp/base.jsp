@@ -16,22 +16,32 @@
         <script type="text/javascript" src="${contextPath}/js/main.js"></script>
     </head>
     <body>
-        <security:authorize access="!isAuthenticated()">
-            <div class="d-flex justify-content-end">
-                <a class="nav-link" href="${contextPath}/register">Register</a>
+        <div class="container">
+            <div class="row mt-3">
+                <div class="col-4">
+                    <a href="/avis" class="btn btn-secondary">Avis</a>
+                    <a href="/jeu" class="btn btn-secondary">Jeux</a>
+                </div>
+                <div class="col-8">
+                    <security:authorize access="!isAuthenticated()">
+                        <div class="d-flex justify-content-end">
+                            <a class="nav-link" href="${contextPath}/register">Register</a>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <a class="nav-link" href="${contextPath}/login">Login</a>
+                        </div>
+                    </security:authorize>
+                    <security:authorize access="isAuthenticated()">
+                        <div class="d-flex justify-content-end">
+                            <span class="mt-2">Bonjour <security:authentication property="name"/></span>
+                            <form method="POST" action="${contextPath}/logout" autocomplete="off">
+                                <button type="submit" tabindex="3" class="btn btn-link">Logout</button>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                            </form>
+                        </div>
+                    </security:authorize>
+                </div>
             </div>
-            <div class="d-flex justify-content-end">
-                <a class="nav-link" href="${contextPath}/login">Login</a>
-            </div>
-        </security:authorize>
-        <security:authorize access="isAuthenticated()">
-            <div class="d-flex justify-content-end">
-                <span>Bonjour <security:authentication property="name"/></span>
-                <form method="POST" action="${contextPath}/logout" autocomplete="off">
-                    <button type="submit" tabindex="3" class="btn btn-link">Logout</button>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                </form>
-            </div>
-        </security:authorize>
+        </div>
         <div class="container">
             <div class="row">

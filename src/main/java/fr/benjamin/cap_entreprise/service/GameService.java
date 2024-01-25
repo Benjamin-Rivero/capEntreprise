@@ -10,6 +10,7 @@ import fr.benjamin.cap_entreprise.utils.DateUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class GameService {
+public class GameService implements SortingService<Game>{
 
     private final GameRepository gameRepository;
     private final PublisherService publisherService;
@@ -83,5 +84,10 @@ public class GameService {
 
     public Page<Game> findAll(Pageable pageable) {
         return gameRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Game> findAllSorted(Sort sort) {
+        return gameRepository.findAll(sort);
     }
 }

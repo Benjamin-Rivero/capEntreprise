@@ -22,7 +22,7 @@
 
                 <f:label path="description" class="col-sm-2 col-form-label">Description : </f:label>
                 <div class="col-sm-10">
-                    <f:input type="text" cssClass="form-control" path="description"/>
+                    <f:textarea cssClass="form-control" path="description"/>
                     <f:errors path="description" cssClass="invalid-feedback"/>
                 </div>
 

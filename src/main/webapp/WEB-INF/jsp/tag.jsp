@@ -14,15 +14,22 @@
 <%@ page import="fr.benjamin.cap_entreprise.entity.Player" %>
 <%@ page import="fr.benjamin.cap_entreprise.entity.Moderator" %>
 <%@ page import="fr.benjamin.cap_entreprise.utils.DateUtils" %>
+<%@ page import="fr.benjamin.cap_entreprise.utils.JspUtils" %>
 
 <%--&lt;%&ndash; Renomme de manière plus simple le "pageContext.request.contextPath" &ndash;%&gt;--%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <%
+    String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
     String path = request.getAttribute(RequestDispatcher.FORWARD_REQUEST_URI).toString();
     Object query = request.getAttribute(RequestDispatcher.FORWARD_QUERY_STRING);
-
-    request.setAttribute("currentUrl", path);
+    String queryString = "";
+    if (query != null) {
+        queryString = query.toString();
+    }
+    request.setAttribute("currentQuery", queryString);
+    request.setAttribute("currentPath", path);
+    request.setAttribute("currentUrl", url + path);
     WebApplicationContext ctx = RequestContextUtils.findWebApplicationContext(request);
     if (ctx != null) {
         UserService userService = ctx.getBean(UserService.class);
@@ -35,6 +42,7 @@
                 user = (Moderator)userService.findByUsername(request.getUserPrincipal().getName());
             }
             request.setAttribute("userLogged", user);
+            request.setAttribute("jspUtils", ctx.getBean(JspUtils.class));
             request.setAttribute("dateUtils", ctx.getBean(DateUtils.class));
         }
     }

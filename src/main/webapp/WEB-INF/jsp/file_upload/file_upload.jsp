@@ -2,10 +2,11 @@
 <%@ include file="../tag.jsp" %>
 <jsp:include flush="true" page="../base.jsp"/>
 
-<form method="POST" action="${pageContext.request.contextPath}/jeu/${id}/upload/game_image?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
+<form method="POST" action="${pageContext.request.contextPath}/jeu/${id}/upload/game_image" enctype="multipart/form-data">
     <label>Choose a file :</label>
     <input type="file" name="file" />
     <input type="submit" value="Submit"/>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>
 <div>
     ${message}
