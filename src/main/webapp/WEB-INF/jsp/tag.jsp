@@ -19,6 +19,7 @@
 <%--&lt;%&ndash; Renomme de manière plus simple le "pageContext.request.contextPath" &ndash;%&gt;--%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
+
 <%
     String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
     String path = request.getAttribute(RequestDispatcher.FORWARD_REQUEST_URI).toString();

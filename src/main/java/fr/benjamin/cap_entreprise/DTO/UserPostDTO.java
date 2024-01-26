@@ -1,5 +1,6 @@
 package fr.benjamin.cap_entreprise.DTO;
 
+import fr.benjamin.cap_entreprise.validation.annotation.UniqueUsername;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -20,6 +21,7 @@ public class UserPostDTO {
 
     @NotBlank(message = "Please, give a proper name")
     @Size(message = "The account name must have at least 5 characters", min = 5)
+    @UniqueUsername
     private String username;
 
     @NotBlank(message = "Please, the password must have a value")

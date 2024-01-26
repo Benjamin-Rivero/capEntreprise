@@ -1,0 +1,17 @@
+.gradient {
+    position:relative;
+    background-image : linear-gradient(to bottom, transparent, #9c2525);
+}
+
+.game-img{
+    position:relative;
+    height:80%;
+    z-index:-1;
+    object-fit:cover;
+}
+
+.test2{
+    position:relative;
+    top:-43vh;
+    z-index:1;
+}

@@ -19,4 +19,6 @@ public class UrlRoute {
 
     public static final String URL_GAME_ID = URL_GAME + "/{id}";
     public static final String URL_GAME_DELETE =URL_GAME_ID+"/supprimer" ;
+
+    public final static String URL_EXPORT= "/telecharger-export-excel";
 }

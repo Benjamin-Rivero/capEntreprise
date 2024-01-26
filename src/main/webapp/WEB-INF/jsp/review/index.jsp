@@ -78,7 +78,12 @@
             </c:forEach>
         </tbody>
     </table>
-
+    <div>
+        <a href="${UrlRoute.URL_EXPORT}" class="btn btn-link">
+            <i class="fa-solid fa-file-excel me-1"></i>
+            Télécharger export Excel
+        </a>
+    </div>
 
     <c:set var="page" scope="request" value="${reviews}"/>
     <%@ include file="../component/pagination.jsp" %>

@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,5 +28,15 @@ public class PlatformService implements SortingService<Platform>{
     @Override
     public List<Platform> findAllSorted(Sort sort) {
         return platformRepository.findAll(sort);
+    }
+
+    public List<String> getPlatformLogos(List<Platform> platforms){
+        List<String> logos = new ArrayList<>();
+        platforms.forEach(platform -> {
+            if(!logos.contains(platform.getLogo())){
+                logos.add(platform.getLogo());
+            }
+        });
+        return logos;
     }
 }

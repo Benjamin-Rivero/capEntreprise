@@ -29,6 +29,9 @@ public class Platform implements SluggerInterface, NomenclatureInterface {
     @ManyToMany(mappedBy = "platforms")
     private List<Game> games;
 
+    @Column(columnDefinition = "TEXT")
+    private String logo;
+
     @Override
     public String getField() {
         return name;

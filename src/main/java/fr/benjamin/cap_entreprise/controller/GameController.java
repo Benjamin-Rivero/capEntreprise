@@ -1,6 +1,7 @@
 package fr.benjamin.cap_entreprise.controller;
 
 import fr.benjamin.cap_entreprise.DTO.GameDTO;
+import fr.benjamin.cap_entreprise.entity.Game;
 import fr.benjamin.cap_entreprise.entity.Moderator;
 import fr.benjamin.cap_entreprise.entity.User;
 import fr.benjamin.cap_entreprise.mapping.UrlRoute;
@@ -52,7 +53,9 @@ public class GameController {
             @PathVariable Long id,
             ModelAndView mav
     ){
-        mav.addObject("game",gameService.findById(id));
+        Game game = gameService.findById(id);
+        mav.addObject("game",game);
+        mav.addObject("game_logos",platformService.getPlatformLogos(game.getPlatforms()));
         mav.setViewName("game/show");
         return mav;
     }

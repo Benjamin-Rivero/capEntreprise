@@ -40,7 +40,7 @@
         <tbody>
             <c:forEach items="${games.content}" var="game">
                 <tr>
-                    <td><img class="img-fluid w-25" src=${game.image}></td>
+                    <td class="w-25"><img class="img-fluid" src=${game.image}></td>
                     <td>${game.name}</td>
                     <td>${game.publisher.name}</td>
                     <td>
