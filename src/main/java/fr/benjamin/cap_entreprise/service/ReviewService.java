@@ -8,6 +8,8 @@ import fr.benjamin.cap_entreprise.repository.ReviewRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -51,5 +53,20 @@ public class ReviewService {
 
     public Page<Review> findAll(Pageable pageable) {
         return reviewRepository.findAll(pageable);
+    }
+
+    public Page<Review> findAllFiltered(String search1,String search2,int page,int size){
+        Pageable pageable = createPageRequestUsing(page,size);
+
+        List<Review> reviews = reviewRepository.findAllByGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase(search1,search2);
+        int start = (int)pageable.getOffset();
+        int end = Math.min((start+pageable.getPageSize()),reviews.size());
+
+        List<Review> pageContent = reviews.subList(start,end);
+        return new PageImpl<>(pageContent,pageable, reviews.size());
+    }
+
+    private Pageable createPageRequestUsing(int page,int size){
+        return PageRequest.of(page,size);
     }
 }

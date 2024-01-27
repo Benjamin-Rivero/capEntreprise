@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.util.Map;
 
 @AllArgsConstructor
 @Controller
@@ -129,6 +130,22 @@ public class ReviewController {
         mav.setViewName("redirect:/avis");
         return mav;
     }
+
+    @GetMapping("/avis/filtre/{value}")
+    public ModelAndView listFiltered(
+            ModelAndView mav,
+            @RequestParam Map<String,String[]> params,
+            @PathVariable String value,
+            @PageableDefault(
+                    size=6
+            ) Pageable pageable
+    ){
+
+        mav.setViewName("review/index");
+        mav.addObject("reviews",reviewService.findAllFiltered(value,value));
+        return mav;
+    }
+    )
 
 
 }
