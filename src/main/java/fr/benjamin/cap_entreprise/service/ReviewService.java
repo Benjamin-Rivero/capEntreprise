@@ -53,7 +53,16 @@ public class ReviewService {
         return reviewRepository.findAll(pageable);
     }
 
-    public Page<Review> findAllFiltered(String search1, String search2, Integer pageNumber, List<String> params){
+    public Page<Review> findAllFiltered(String search1, String search2, Pageable page, List<String> params){
+
+        List<Review> reviews = reviewRepository.findAllByGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase(search1,search2,Sort.by(getSortOrder(params)));
+        int start = (int)page.getOffset();
+        int end = Math.min((start+page.getPageSize()),reviews.size());
+        List<Review> pageContent = reviews.subList(start,end);
+        return new PageImpl<>(pageContent,page, reviews.size());
+    }
+
+    private List<Sort.Order> getSortOrder(List<String> params){
         List<Sort.Order> orders = new ArrayList<>();
         if(params!=null) {
             if (params.get(0).contains(",")) {
@@ -75,16 +84,6 @@ public class ReviewService {
                 }
             }
         }
-        if(pageNumber==null){
-            pageNumber=1;
-        }
-
-        Pageable page = PageRequest.of(pageNumber-1, 6,Sort.by(orders));
-        List<Review> reviews = reviewRepository.findAllByGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase(search1,search2);
-        int start = (int)page.getOffset();
-        int end = Math.min((start+page.getPageSize()),reviews.size());
-        List<Review> pageContent = reviews.subList(start,end);
-        /*PageImpl<Review> test =*/ return new PageImpl<>(pageContent,page, reviews.size());
-//        return reviewRepository.findAll(test.getPageable());
+        return orders;
     }
 }

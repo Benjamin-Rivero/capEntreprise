@@ -136,11 +136,15 @@ public class ReviewController {
     public ModelAndView listFiltered(
             ModelAndView mav,
             @RequestParam(name = "sort",required = false) List<String> params,
-            @RequestParam(name="page",required = false) Integer pageNumber,
+            @PageableDefault(
+                    size = 6,
+                    sort = {"createdAt"},
+                    direction = Sort.Direction.DESC
+            ) Pageable page,
             @PathVariable String value
     ){
         mav.setViewName("review/index");
-        mav.addObject("reviews",reviewService.findAllFiltered(value,value,pageNumber,params));
+        mav.addObject("reviews",reviewService.findAllFiltered(value,value,page,params));
         return mav;
     }
 

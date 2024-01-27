@@ -40,13 +40,15 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </a>
             </div>
-            <div class="d-flex mt-4 mx-4">
-                <select>
-                    <option value="">All</option>
-                    <option value="">Modéré</option>
-                    <option value="">Non modéré</option>
-                </select>
-            </div>
+            <security:authorize access="hasRole('MODERATOR')">
+                <div class="d-flex mt-4 mx-4">
+                    <select>
+                        <option value="">All</option>
+                        <option value="">Modéré</option>
+                        <option value="">Non modéré</option>
+                    </select>
+                </div>
+            </security:authorize>
         </div>
         <div  class="mt-auto mb-2">
             <span>
@@ -55,7 +57,7 @@
         </div>
     </div>
     <security:authorize access="hasRole('PLAYER')">
-        <a href="${s:mvcUrl('AppReview#new').build()}" class="btn btn-secondary w-25">Nouvel avis</a>
+        <a href="${s:mvcUrl('AppReview#new').build()}" class="btn btn-secondary w-10 my-2 align-end">Nouvel avis</a>
     </security:authorize>
     <table class="table table-striped" myTable>
         <thead>
