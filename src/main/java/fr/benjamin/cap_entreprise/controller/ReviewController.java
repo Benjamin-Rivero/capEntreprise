@@ -137,15 +137,16 @@ public class ReviewController {
             @RequestParam Map<String,String[]> params,
             @PathVariable String value,
             @PageableDefault(
-                    size=6
+                    size=6,
+                    sort={"createdAt"},
+                    direction = Sort.Direction.DESC
             ) Pageable pageable
     ){
 
         mav.setViewName("review/index");
-        mav.addObject("reviews",reviewService.findAllFiltered(value,value));
+        mav.addObject("reviews",reviewService.findAllFiltered(value,value,pageable));
         return mav;
     }
-    )
 
 
 }

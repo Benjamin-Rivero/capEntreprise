@@ -26,7 +26,7 @@
             <%@ include file="../component/sortable.jsp" %>
 
             <span class="mt-auto mb-2">
-                <a href="${currentUrl}" class="btn-link">
+                <a href="/avis" class="btn-link">
                     Reset
                 </a>
             </span>
@@ -41,7 +41,11 @@
                 </a>
             </div>
             <div class="d-flex mt-4 mx-4">
-                <select></select>
+                <select>
+                    <option value="">All</option>
+                    <option value="">Modéré</option>
+                    <option value="">Non modéré</option>
+                </select>
             </div>
         </div>
         <div  class="mt-auto mb-2">

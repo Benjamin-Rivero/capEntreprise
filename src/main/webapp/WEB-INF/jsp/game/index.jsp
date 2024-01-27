@@ -25,7 +25,7 @@
 
 
             <span class="mt-auto mb-2">
-                    <a href="${currentUrl}" class="btn-link">
+                    <a href="/jeu" class="btn-link">
                         Reset
                     </a>
             </span>
