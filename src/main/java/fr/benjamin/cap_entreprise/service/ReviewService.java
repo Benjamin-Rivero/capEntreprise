@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -52,12 +53,38 @@ public class ReviewService {
         return reviewRepository.findAll(pageable);
     }
 
-    public Page<Review> findAllFiltered(String search1, String search2, Pageable pageable){
+    public Page<Review> findAllFiltered(String search1, String search2, Integer pageNumber, List<String> params){
+        List<Sort.Order> orders = new ArrayList<>();
+        if(params!=null) {
+            if (params.get(0).contains(",")) {
+                params.forEach(param -> {
+                    String[] ab = param.split(",");
+                    if (ab[1].equals("asc")) {
+                        orders.add(new Sort.Order(Sort.Direction.ASC, ab[0]));
+                    }
+                    if (ab[1].equals("desc")) {
+                        orders.add(new Sort.Order(Sort.Direction.DESC, ab[0]));
+                    }
+                });
+            } else {
+                if (params.get(1).equals("asc")) {
+                    orders.add(new Sort.Order(Sort.Direction.ASC, params.get(0)));
+                }
+                if (params.get(1).equals("desc")) {
+                    orders.add(new Sort.Order(Sort.Direction.DESC, params.get(0)));
+                }
+            }
+        }
+        if(pageNumber==null){
+            pageNumber=1;
+        }
 
+        Pageable page = PageRequest.of(pageNumber-1, 6,Sort.by(orders));
         List<Review> reviews = reviewRepository.findAllByGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase(search1,search2);
-        int start = (int)pageable.getOffset();
-        int end = Math.min((start+pageable.getPageSize()),reviews.size());
+        int start = (int)page.getOffset();
+        int end = Math.min((start+page.getPageSize()),reviews.size());
         List<Review> pageContent = reviews.subList(start,end);
-        return new PageImpl<>(pageContent,pageable, reviews.size());
+        /*PageImpl<Review> test =*/ return new PageImpl<>(pageContent,page, reviews.size());
+//        return reviewRepository.findAll(test.getPageable());
     }
 }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Map;
 
 @AllArgsConstructor
@@ -134,17 +135,12 @@ public class ReviewController {
     @GetMapping("/avis/filtre/{value}")
     public ModelAndView listFiltered(
             ModelAndView mav,
-            @RequestParam Map<String,String[]> params,
-            @PathVariable String value,
-            @PageableDefault(
-                    size=6,
-                    sort={"createdAt"},
-                    direction = Sort.Direction.DESC
-            ) Pageable pageable
+            @RequestParam(name = "sort",required = false) List<String> params,
+            @RequestParam(name="page",required = false) Integer pageNumber,
+            @PathVariable String value
     ){
-
         mav.setViewName("review/index");
-        mav.addObject("reviews",reviewService.findAllFiltered(value,value,pageable));
+        mav.addObject("reviews",reviewService.findAllFiltered(value,value,pageNumber,params));
         return mav;
     }
 

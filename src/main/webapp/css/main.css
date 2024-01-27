@@ -1,3 +1,7 @@
 @import url("lib/main.css");
 @import url("pages/main.css");
 @import url("component/main.css");
+
+body{
+    background-image:url('./moche2.png');
+}
