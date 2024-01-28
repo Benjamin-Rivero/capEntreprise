@@ -1,4 +1,3 @@
-
 function initFilter(){
     const filter = document.querySelector("input[data-filter]");
     if(filter){
@@ -14,8 +13,6 @@ function initFilter(){
             })
         }
     }
-
-
 }
 
 function filterWith(value){
@@ -27,3 +24,18 @@ function filterWith(value){
 window.addEventListener('load',()=>{
     initFilter();
 })
+
+function moderationFilter(){
+    const selector = document.querySelector("select[moderationFilter]");
+    if(selector){
+        selector.addEventListener('change',()=>{
+            const val = selector.value;
+            if(val){
+                var url = new URL(location.href);
+                url.searchParams.set("moderation",val);
+                console.log(url)
+            }
+            location.href=url.href;
+        })
+    }
+}

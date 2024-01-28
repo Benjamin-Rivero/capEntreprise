@@ -36,16 +36,16 @@
                        placeholder="Search"
                        data-filter
                 >
-                <a href="" class="mt-2 ms-1">
+                <a class="mt-2 ms-1">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </a>
             </div>
             <security:authorize access="hasRole('MODERATOR')">
                 <div class="d-flex mt-4 mx-4">
-                    <select>
-                        <option value="">All</option>
-                        <option value="">Modéré</option>
-                        <option value="">Non modéré</option>
+                    <select moderationFilter>
+                        <option value="0" selected>All</option>
+                        <option value="1">Non modéré</option>
+                        <option value="2">Modéré</option>
                     </select>
                 </div>
             </security:authorize>
