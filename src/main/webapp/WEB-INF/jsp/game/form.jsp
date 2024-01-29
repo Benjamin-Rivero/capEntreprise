@@ -111,6 +111,7 @@
             </div>
 
             <f:input type="number" path="moderatorId" hidden="hidden"/>
+            <f:input type="text" path="image" hidden="hidden"/>
             <f:button class="btn btn-secondary" type="reset">Reset</f:button>
             <f:button class="btn btn-primary">Submit</f:button>
         </f:form>

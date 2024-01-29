@@ -21,6 +21,8 @@ function filterWith(value){
     if(value.trim()){
         url.searchParams.set("search",value);
     }
+    url.searchParams.set("page","1");
+    url.search = url.search.replaceAll("%2C",",");
     location.href = url.href;
 }
 

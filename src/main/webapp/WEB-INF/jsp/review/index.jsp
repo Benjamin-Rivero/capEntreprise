@@ -42,7 +42,7 @@
             </div>
             <security:authorize access="hasRole('MODERATOR')">
                 <div class="d-flex mt-4 mx-4">
-                    <select moderationFilter>
+                    <select class="form-select" moderationFilter>
                         <option value="0" selected>All</option>
                         <option value="1">Non modéré</option>
                         <option value="2">Modéré</option>
@@ -72,7 +72,7 @@
             <c:forEach items="${reviews.content}" var="review">
                 <tr>
                     <td>Le ${dateUtils.convertLocalDateTimeToFormat(review.createdAt,"dd/MM/yyyy")}</td>
-                    <td>${review.game.name}</td>
+                    <td><a class="game-link" href="/jeu/${review.game.id}">${review.game.name}</a></td>
                     <td>${review.player.username}</td>
                     <td>${review.rating}</td>
                     <td>
@@ -111,9 +111,13 @@
             Télécharger export Excel
         </a>
     </div>
+    <div class="d-flex justify-content-center">
+        <span class="mt-2">Affichage des éléments ${reviews.size*reviews.number+1} à ${(reviews.size*reviews.number)+reviews.numberOfElements} sur ${reviews.totalElements}</span>
+    </div>
 
     <c:set var="page" scope="request" value="${reviews}"/>
     <%@ include file="../component/pagination.jsp" %>
+
 
 
 <%@ include file="../footer.jsp" %>

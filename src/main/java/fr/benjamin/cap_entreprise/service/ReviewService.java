@@ -54,6 +54,10 @@ public class ReviewService {
     }
 
     public Page<Review> findAllFiltered(String search1, String search2,String username, Pageable page,String moderation){
+        if(search1==null){
+            search1="";
+            search2="";
+        }
             if (moderation == null) {
                 if(userService.findByUsername(username).isAdmin()){
                     return reviewRepository.findAllForModerator(search1, search2,username, page);

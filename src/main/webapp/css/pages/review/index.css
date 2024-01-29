@@ -1,0 +1,8 @@
+.game-link {
+    text-decoration: none;
+    color:white;
+}
+
+.game-link:hover{
+    color:cornflowerblue;
+}
