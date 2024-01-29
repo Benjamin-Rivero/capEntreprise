@@ -1,5 +1,6 @@
 function initFilter(){
     const filter = document.querySelector("input[data-filter]");
+    
     if(filter){
         const submit = filter.nextElementSibling;
         filter.addEventListener('keydown',(e)=>{
@@ -16,26 +17,38 @@ function initFilter(){
 }
 
 function filterWith(value){
+    var url = new URL(location.href);
     if(value.trim()){
-        location.href="/avis/filtre/"+value;
+        url.searchParams.set("search",value);
     }
+    location.href = url.href;
 }
 
 window.addEventListener('load',()=>{
     initFilter();
+    moderationFilter();
 })
 
 function moderationFilter(){
     const selector = document.querySelector("select[moderationFilter]");
+    var url = new URL(location.href);
     if(selector){
         selector.addEventListener('change',()=>{
             const val = selector.value;
             if(val){
-                var url = new URL(location.href);
-                url.searchParams.set("moderation",val);
-                console.log(url)
+                if(parseInt(val)===0){
+                    url.searchParams.delete("moderation");
+                }
+                if(parseInt(val)>=1){
+                    url.searchParams.set("moderation",val);
+                }
             }
+            url.search = url.search.replaceAll("%2C",",");
             location.href=url.href;
         })
+        const val = url.searchParams.get("moderation");
+        if(val && parseInt(val)>=0){
+            selector.value=val;
+        }
     }
 }

@@ -70,7 +70,6 @@
         </thead>
         <tbody>
             <c:forEach items="${reviews.content}" var="review">
-            <c:if test="${userLogged.admin || userLogged.equals(review.player) || review.moderator != null}">
                 <tr>
                     <td>Le ${dateUtils.convertLocalDateTimeToFormat(review.createdAt,"dd/MM/yyyy")}</td>
                     <td>${review.game.name}</td>
@@ -102,7 +101,6 @@
                         </div>
                     </td>
                 </tr>
-            </c:if>
             </c:forEach>
         </tbody>
     </table>

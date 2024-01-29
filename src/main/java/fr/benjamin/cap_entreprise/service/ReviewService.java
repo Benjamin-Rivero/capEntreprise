@@ -53,16 +53,27 @@ public class ReviewService {
         return reviewRepository.findAll(pageable);
     }
 
-    public Page<Review> findAllFiltered(String search1, String search2, Pageable page, List<String> params){
+    public Page<Review> findAllFiltered(String search1, String search2,String username, Pageable page,String moderation){
+            if (moderation == null) {
+                if(userService.findByUsername(username).isAdmin()){
+                    return reviewRepository.findAllForModerator(search1, search2,username, page);
+                }
+                return reviewRepository.findAllByGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase
+                        (search1, search2, username, page);
+            }
+            if (moderation != null && moderation.equals("1")) {
+                return reviewRepository.findAllByModeratorNullAndGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase
+                        (search1, search2, page);
+            }
+            if (moderation != null && moderation.equals("2")) {
+                return reviewRepository.findAllByModeratorNotNullAndGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase
+                        (search1, search2, page);
+            }
 
-        List<Review> reviews = reviewRepository.findAllByGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase(search1,search2,Sort.by(getSortOrder(params)));
-        int start = (int)page.getOffset();
-        int end = Math.min((start+page.getPageSize()),reviews.size());
-        List<Review> pageContent = reviews.subList(start,end);
-        return new PageImpl<>(pageContent,page, reviews.size());
+        return null;
     }
 
-    private List<Sort.Order> getSortOrder(List<String> params){
+    /*private List<Sort.Order> getSortOrder(List<String> params){
         List<Sort.Order> orders = new ArrayList<>();
         if(params!=null) {
             if (params.get(0).contains(",")) {
@@ -85,5 +96,5 @@ public class ReviewService {
             }
         }
         return orders;
-    }
+    }*/
 }

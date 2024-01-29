@@ -38,10 +38,13 @@ public class ReviewController {
                     size = 6, // nb Element par page
                     sort = { "createdAt" }, // order by
                     direction = Sort.Direction.DESC
-            ) Pageable pageable
+            ) Pageable pageable,
+            Principal principal,
+            @RequestParam(value = "moderation",required = false) String moderation,
+            @RequestParam(value="search",required = false) String search
     ){
         mav.setViewName("review/index");
-        mav.addObject("reviews",reviewService.findAll(pageable));
+        mav.addObject("reviews",reviewService.findAllFiltered(search,search, principal.getName(), pageable,moderation));
         return mav;
     }
 
@@ -131,22 +134,5 @@ public class ReviewController {
         mav.setViewName("redirect:/avis");
         return mav;
     }
-
-    @GetMapping("/avis/filtre/{value}")
-    public ModelAndView listFiltered(
-            ModelAndView mav,
-            @RequestParam(name = "sort",required = false) List<String> params,
-            @PageableDefault(
-                    size = 6,
-                    sort = {"createdAt"},
-                    direction = Sort.Direction.DESC
-            ) Pageable page,
-            @PathVariable String value
-    ){
-        mav.setViewName("review/index");
-        mav.addObject("reviews",reviewService.findAllFiltered(value,value,page,params));
-        return mav;
-    }
-
 
 }
