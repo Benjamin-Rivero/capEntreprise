@@ -1,0 +1,54 @@
+.loginImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    background-image : url("../backgrounds/login_background.jpg");
+    background-size:cover;
+    z-index: -2;
+}
+
+.login-card.body{
+    margin:5px;
+}
+
+.login-card.header{
+    margin:0 2rem;
+}
+
+.login-card-bg{
+    border: 2px solid;
+    border-color: azure;
+    border-radius: 15px;
+    position:absolute;
+    top:25%;
+    left:37%;
+    width:24rem;
+    height:21rem;
+    z-index: 2;
+}
+
+.login-card-bg-blur{
+    filter:blur(3px);
+    position: absolute;
+    top:25%;
+    left:37%;
+    min-width: 24rem;
+    min-height: 21rem;
+    z-index: 1;
+    background-color: rgba(240, 248, 255, 0.8);
+    border-radius: 15px;
+}
+
+.login-card button{
+    margin:1rem 2rem;
+}
+
+.login-card h2{
+    color: rgb(58, 98, 207);
+}
+
+.login-card a{
+    color: rgb(58, 98, 207);
+}

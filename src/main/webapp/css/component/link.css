@@ -8,6 +8,11 @@
 .btn-link:hover,
 .nav-link:hover,
 .link-if:hover {
-    color: var(--bs-primary);
+    color: cornflowerblue;
+}
+
+
+.sort-link:hover {
+    color:cornflowerblue;
 }
 

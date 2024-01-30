@@ -1,7 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="../tag.jsp" %>
 <jsp:include flush="true" page="../base.jsp"/>
+<script type="text/javascript" src="/js/game/hoverFocus.js"></script>
 
+    <img class="game-index-bg-img">
     <h1>Index des jeux</h1>
 
     <security:authorize access="hasRole('ROLE_MODERATOR')">
@@ -26,40 +28,30 @@
 
             <span class="mt-auto mb-2">
                     <a href="/jeu" class="btn-link">
-                        Reset
+                        <i class="fa-solid fa-filter-circle-xmark"></i>
                     </a>
             </span>
         </div>
-    <table class="table table-striped">
-        <thead>
-            <td>Image</td>
-            <td>Nom</td>
-            <td>Editeur</td>
-            <td>Operations</td>
-        </thead>
-        <tbody>
-            <c:forEach items="${games.content}" var="game">
-                <tr>
-                    <td>
-                        <div class="table-img">
-                            <img src=${game.image}>
-                        </div>
-                    </td>
-                    <td>${game.name}</td>
-                    <td>${game.publisher.name}</td>
-                    <td>
-                        <a href="/jeu/${game.id}" class="btn btn-link">Voir</a>
-                        <security:authorize access="hasRole('ROLE_MODERATOR')">
-                            <a href="/jeu/editer/${game.id}" class="btn btn-link">Modifier</a>
-                            <a href="/jeu/${game.id}/upload" class="btn btn-link">Televerser l'image</a>
-                            <a href="/jeu/${game.id}/supprimer" class="btn btn-link">Supprimer</a>
-                        </security:authorize>
-                    </td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
 
+    <div class="row d-flex justify-content-center ms-4">
+    <c:forEach items="${games.content}" var="game">
+        <div class="game-card card col-md-3 col-sm-12 bg-dark my-3" not-hovered>
+            <a href="/jeu/${game.id}">
+            <img src="${game.image}" class="card-img-top img-fluid card-img mt-2" alt="Image needed">
+            </a>
+            <div class="card-body bg-dark my-auto">
+                <a href="/jeu/${game.id}" class="link-if"><h5 class="card-title">${game.name}</h5></a>
+                <p class="card-text">${game.publisher.name}</p>
+                <security:authorize access="hasRole('MODERATOR')">
+                    <a href="/jeu/editer/${game.id}" class="btn btn-game"><i class="fa-solid fa-pen"></i></a>
+                    <a href="/jeu/${game.id}/upload" class="btn btn-game"><i class="fa-solid fa-upload"></i></a>
+                    <a href="/jeu/${game.id}/supprimer" class="btn btn-game"><i class="fa-solid fa-trash-can"></i></a>
+                </security:authorize>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </c:forEach>
+    </div>
 
     <c:set var="page" scope="request" value="${games}"/>
     <%@ include file="../component/pagination.jsp" %>

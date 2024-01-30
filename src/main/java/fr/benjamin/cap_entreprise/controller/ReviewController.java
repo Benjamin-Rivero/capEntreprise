@@ -119,7 +119,6 @@ public class ReviewController {
             Principal principal
     ){
         Moderator moderator = (Moderator) userService.findByUsername(principal.getName());
-        System.out.println(moderator.getId());
         this.reviewService.validate(id, moderator.getId());
         mav.setViewName("redirect:/avis");
         return mav;

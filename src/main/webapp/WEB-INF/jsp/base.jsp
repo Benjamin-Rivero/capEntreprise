@@ -17,7 +17,8 @@
     </head>
     <body>
         <div class="container">
-            <div class="row mt-3">
+            <div class="row mt-3 navbar">
+                <nav class="navbar">
                 <div class="col-4">
                     <a href="/avis" class="btn btn-secondary">Avis</a>
                     <a href="/jeu" class="btn btn-secondary">Jeux</a>
@@ -41,6 +42,7 @@
                         </div>
                     </security:authorize>
                 </div>
+                </nav>
             </div>
         </div>
         <div class="container">

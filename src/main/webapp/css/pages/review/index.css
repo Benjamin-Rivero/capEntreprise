@@ -1,8 +1,8 @@
-.game-link {
+.link {
     text-decoration: none;
     color:white;
 }
 
-.game-link:hover{
+.link:hover{
     color:cornflowerblue;
 }

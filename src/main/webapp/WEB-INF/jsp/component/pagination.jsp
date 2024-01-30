@@ -3,7 +3,7 @@
 <core:set var="currentPage" value="${page.number + 1}"/>
 <div class="navigation d-flex justify-content-center my-4">
 <div class="navigation d-flex justify-content-center my-4 me-5">
-    <div class="pagination">
+    <div class="pagination pagination-div">
         <core:if test="${!page.first}">
             <core:set var="firstPage" value="page=1"/>
             <%-- currentUrl => http://localhost:8080/ (l'url de la page courante)--%>

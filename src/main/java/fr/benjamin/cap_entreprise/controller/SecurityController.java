@@ -3,6 +3,7 @@ package fr.benjamin.cap_entreprise.controller;
 import fr.benjamin.cap_entreprise.DTO.UserPostDTO;
 import fr.benjamin.cap_entreprise.mapping.UrlRoute;
 import fr.benjamin.cap_entreprise.service.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.util.Optional;
 
 @Controller
 @AllArgsConstructor

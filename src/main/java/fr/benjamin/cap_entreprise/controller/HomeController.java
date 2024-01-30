@@ -31,7 +31,6 @@ public class HomeController {
             Principal principal
     ) {
         if(principal == null){
-            System.out.println("Pourquoi tu fais ca ?");
             mav.setViewName("redirect:"+UrlRoute.URL_LOGIN);
             return mav;
         }

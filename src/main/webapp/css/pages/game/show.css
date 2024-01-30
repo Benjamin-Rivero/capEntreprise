@@ -1,17 +1,8 @@
-.gradient {
-    position:relative;
-    background-image : linear-gradient(to bottom, transparent, #9c2525);
+.separator.game-review{
+    min-height:3rem;
 }
 
-.game-img{
-    position:relative;
-    height:80%;
-    z-index:-1;
-    object-fit:cover;
-}
-
-.test2{
-    position:relative;
-    top:-43vh;
-    z-index:1;
+.review-card{
+    max-width:24rem;
+    min-height:20rem;
 }

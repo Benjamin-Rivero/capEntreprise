@@ -2,6 +2,7 @@
 <%@ include file="../tag.jsp" %>
 <c:set var="title" scope="request" value="Liste des jeux"/>
 <jsp:include flush="true" page="../base.jsp"/>
+<script type="text/javascript" src="/js/review/filter.js"></script>
 
 
 
@@ -72,7 +73,7 @@
             <c:forEach items="${reviews.content}" var="review">
                 <tr>
                     <td>Le ${dateUtils.convertLocalDateTimeToFormat(review.createdAt,"dd/MM/yyyy")}</td>
-                    <td><a class="game-link" href="/jeu/${review.game.id}">${review.game.name}</a></td>
+                    <td><a class="link-if" href="/jeu/${review.game.id}">${review.game.name}</a></td>
                     <td>${review.player.username}</td>
                     <td>${review.rating}</td>
                     <td>
@@ -104,7 +105,7 @@
             </c:forEach>
         </tbody>
     </table>
-    <script type="text/javascript" src="/js/review/filter.js"></script>
+    
     <div>
         <a href="${UrlRoute.URL_EXPORT}" class="btn btn-link">
             <i class="fa-solid fa-file-excel me-1"></i>

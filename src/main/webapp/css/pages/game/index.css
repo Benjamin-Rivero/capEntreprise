@@ -1,11 +1,39 @@
 
-.table-img {
-    height:80px;
-    width: 80px;
+.game-index-bg-img{
+    background-image: url("../backgrounds/game_index_background.jpg");
+    background-size: cover;
+    position: fixed;
+    top:0;
+    left:0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -100;
 }
 
-.table-img img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+.game-card{
+    transition: transform .2s;
+    width:20rem;
+}
+
+.game-card:hover {
+    transform: scale(1.1);
+}
+
+.card-img{
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    max-height:20rem;
+}
+
+.btn-game{
+    background-color:rgb(70, 70, 145);
+}
+
+.btn-game:hover{
+    background-color:cornflowerblue;
+}
+
+.not-hovered:not(.hovered){
+    transition: all 0.3s ease-in;
+    opacity:30%
 }
