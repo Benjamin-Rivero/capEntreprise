@@ -22,7 +22,7 @@
     border-color: azure;
     border-radius: 15px;
     position:absolute;
-    top:25%;
+    top:15%;
     left:37%;
     width:24rem;
     height:21rem;
@@ -32,7 +32,7 @@
 .login-card-bg-blur{
     filter:blur(3px);
     position: absolute;
-    top:25%;
+    top:15%;
     left:37%;
     min-width: 24rem;
     min-height: 21rem;

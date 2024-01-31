@@ -5,9 +5,6 @@
     font-size: 1.3em;
     font-weight: bold;
 }
-.navigation a:hover {
-    /*color: var(--bs-primary);*/
-}
 
 .first,
 .previous,

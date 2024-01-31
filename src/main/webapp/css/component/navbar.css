@@ -1,3 +1,20 @@
 .navbar{
-    
+    background-color: rgba(44, 37, 37, 0.5);
+    box-shadow: 1px 10px hsla(0, 10%, 39%, 0.199);
+    min-width:100%;
+    justify-content: space-between;
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+
+.navbar-content{
+    min-width:inherit;
+}
+
+.isDisabled {
+    color: currentColor;
+    cursor: default;
+    opacity: 0.5;
+    text-decoration: none;
 }

@@ -1,13 +1,10 @@
 
-.game-index-bg-img{
-    background-image: url("../backgrounds/game_index_background.jpg");
-    background-size: cover;
-    position: fixed;
-    top:0;
-    left:0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -100;
+
+
+.game-index-title{
+    width:13rem;
+    background-color: hsla(0, 12%, 20%, 0.5);
+    padding-left : 1rem;
 }
 
 .game-card{
@@ -33,7 +30,25 @@
     background-color:cornflowerblue;
 }
 
+.btn-game-yellow{
+    color:yellow;
+}
+.btn-game-green{
+    color:green;
+}
+.btn-game-red{
+    color:red;
+}
+
 .not-hovered:not(.hovered){
     transition: all 0.3s ease-in;
     opacity:30%
+}
+
+.link-green{
+    color:green;
+}
+
+.link-green{
+    color:limegreen;
 }

@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -89,5 +90,16 @@ public class GameService implements SortingService<Game>{
     @Override
     public List<Game> findAllSorted(Sort sort) {
         return gameRepository.findAll(sort);
+    }
+
+    public List<Game> getRandomGames() {
+        List<Game> randoms = new ArrayList<>();
+        List<Game> games = gameRepository.findAll();
+        while(randoms.size()<4){
+            int selected = (int)Math.floor(Math.random()*(games.size()));
+            randoms.add(games.get(selected));
+            games.remove(selected);
+        }
+        return randoms;
     }
 }

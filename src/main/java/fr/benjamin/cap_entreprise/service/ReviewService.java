@@ -1,6 +1,7 @@
 package fr.benjamin.cap_entreprise.service;
 
 import fr.benjamin.cap_entreprise.DTO.ReviewDTO;
+import fr.benjamin.cap_entreprise.entity.Game;
 import fr.benjamin.cap_entreprise.entity.Moderator;
 import fr.benjamin.cap_entreprise.entity.Player;
 import fr.benjamin.cap_entreprise.entity.Review;
@@ -10,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,6 +77,34 @@ public class ReviewService {
             }
 
         return null;
+    }
+
+    public List<Review> getRandomReviews() {
+        List<Review> reviews = reviewRepository.findAll();
+        List<Review> randoms = new ArrayList<>();
+        while(randoms.size()<6){
+            int selected = (int)Math.floor(Math.random()*(reviews.size()));
+            if(reviews.get(selected).getModerator() == null){
+                continue;
+            }
+            randoms.add(reviews.get(selected));
+            reviews.remove(selected);
+        }
+        return randoms;
+    }
+
+    public Page<Review> findByGameAndModeratorNotNull(Game game, Pageable pageable) {
+        return reviewRepository.findByGameAndModeratorNotNull(game,pageable);
+    }
+
+    public Review createReview(ReviewDTO reviewDTO, Game game, String name) {
+        Review review = new Review();
+        review.setGame(game);
+        review.setPlayer((Player) userService.findByUsername(name));
+        review.setDescription(reviewDTO.getDescription());
+        review.setRating(reviewDTO.getRating());
+        review.setCreatedAt(LocalDateTime.now());
+        return reviewRepository.saveAndFlush(review);
     }
 
     /*private List<Sort.Order> getSortOrder(List<String> params){

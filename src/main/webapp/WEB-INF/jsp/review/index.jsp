@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="../tag.jsp" %>
-<c:set var="title" scope="request" value="Liste des jeux"/>
+<c:set var="title" scope="request" value="Liste des avis"/>
 <jsp:include flush="true" page="../base.jsp"/>
 <script type="text/javascript" src="/js/review/filter.js"></script>
 
 
-
+    <div class="jsp">
     <div class="d-flex justify-content-between">
         <div class="d-flex">
             <!-- Label à afficher -->
@@ -92,7 +92,7 @@
                             <security:authorize access="hasRole('MODERATOR')">
                                 <c:if test="${review.moderator==null}">
                                     <a class="btn btn-link mx-2" href="/avis/${review.id}/validate">
-                                        <i class="fa-regular fa-circle-check fa-2x rating-20"></i>
+                                        <i class="fa-solid fa-circle-check fa-2x rating-20"></i>
                                     </a>
                                     <a class="btn btn-link" href="/avis/${review.id}/refuse">
                                         <i class="fa-solid fa-circle-xmark fa-2x rating-5"></i>
@@ -114,6 +114,7 @@
     </div>
     <div class="d-flex justify-content-center">
         <span class="mt-2">Affichage des éléments ${reviews.size*reviews.number+1} à ${(reviews.size*reviews.number)+reviews.numberOfElements} sur ${reviews.totalElements}</span>
+    </div>
     </div>
 
     <c:set var="page" scope="request" value="${reviews}"/>

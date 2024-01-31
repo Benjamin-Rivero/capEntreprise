@@ -11,6 +11,24 @@ function initSortable() {
     }
 }
 
+function disableLink(){
+    var url = new URL(location.href);
+    console.log(url);
+    const links = document.querySelectorAll('[link]');
+    if(links){
+        links.forEach((link)=>{
+            if(link.getAttribute("href")===url.pathname){
+                var disabledLink = document.createElement("span");
+                disabledLink.innerHTML = link.innerHTML;
+                link.parentElement.replaceChild(disabledLink,link);
+                disabledLink.classList.toggle("isDisabled");
+                disabledLink.classList.toggle("btn");
+            }
+        })
+    }
+}
+
 window.addEventListener('load', () => {
    initSortable();
+   disableLink();
 });

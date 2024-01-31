@@ -3,6 +3,8 @@ package fr.benjamin.cap_entreprise.controller;
 import fr.benjamin.cap_entreprise.entity.User;
 import fr.benjamin.cap_entreprise.mapping.UrlRoute;
 import fr.benjamin.cap_entreprise.service.ExcelReviewService;
+import fr.benjamin.cap_entreprise.service.GameService;
+import fr.benjamin.cap_entreprise.service.ReviewService;
 import fr.benjamin.cap_entreprise.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
@@ -24,6 +26,8 @@ public class HomeController {
 
     private final UserService userService;
     private final ExcelReviewService excelService;
+    private final ReviewService reviewService;
+    private final GameService gameService;
 
     @GetMapping("/")
     public ModelAndView index(
@@ -34,10 +38,10 @@ public class HomeController {
             mav.setViewName("redirect:"+UrlRoute.URL_LOGIN);
             return mav;
         }
-        System.out.println("Tu devrais pas être la toi");
-        User user = userService.findByUsername(principal.getName());
-        System.out.println("Connected user : "+user.getUsername());
-        mav.setViewName("redirect:/avis");
+//        User user = userService.findByUsername(principal.getName());
+        mav.addObject("reviews",reviewService.getRandomReviews());
+        mav.addObject("games", gameService.getRandomGames());
+        mav.setViewName("index");
         return mav;
     }
 

@@ -11,19 +11,23 @@
 <html>
     <head>
         <title>${title}</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
         <link href="${contextPath}/css/main.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
         <script type="text/javascript" src="${contextPath}/js/main.js"></script>
     </head>
     <body>
-        <div class="container">
-            <div class="row mt-3 navbar">
-                <nav class="navbar">
-                <div class="col-4">
-                    <a href="/avis" class="btn btn-secondary">Avis</a>
-                    <a href="/jeu" class="btn btn-secondary">Jeux</a>
+        
+        <main class="background-img">
+            <security:authorize access="isAuthenticated()">
+        <div class="navbar">
+                <div>
+                    <a href="/" class="btn btn-link" link>Accueil</a>
+                    <a href="/avis" class="btn btn-link" link>Avis</a>
+                    <a href="/jeu" class="btn btn-link" link>Jeux</a>
                 </div>
-                <div class="col-8">
+
                     <security:authorize access="!isAuthenticated()">
                         <div class="d-flex justify-content-end">
                             <a class="nav-link" href="${contextPath}/register">Register</a>
@@ -41,8 +45,8 @@
                             </form>
                         </div>
                     </security:authorize>
-                </div>
-                </nav>
-            </div>
+
         </div>
-        <div class="container">
+    </security:authorize>
+        </div>
+            <div class="container mt-3">

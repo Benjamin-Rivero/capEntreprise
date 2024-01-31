@@ -3,9 +3,6 @@
 <c:set var="title" scope="request" value="Connexion"/>
 <jsp:include flush="true" page="../base.jsp"/>
 
-<link href="${contextPath}/css/login/login.css" rel="stylesheet">
-<img class="loginImg">
-
 <div class="container">
   <div class="login-card-bg-blur"></div>
   <div class="login-card-bg d-flex justify-content-center">

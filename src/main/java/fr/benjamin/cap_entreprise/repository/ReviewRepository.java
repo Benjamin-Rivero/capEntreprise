@@ -1,5 +1,6 @@
 package fr.benjamin.cap_entreprise.repository;
 
+import fr.benjamin.cap_entreprise.entity.Game;
 import fr.benjamin.cap_entreprise.entity.Review;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,4 +27,5 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     @Query("Select r From Review r Join Game g on r.game = g join User u on r.player = u where r.moderator is NULL AND (g.name like %?1% or u.username like %?2%)")
     Page<Review> findAllByModeratorNullAndGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase(String search1, String search2, Pageable pageable);
 
+    Page<Review> findByGameAndModeratorNotNull(Game game, Pageable pageable);
 }

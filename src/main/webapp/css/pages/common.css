@@ -6,6 +6,17 @@
     --bs-primary: rgb(70, 70, 145);;
 }
 
+.background-img{
+    background-image: url("backgrounds/game_index_background.jpg");
+    background-size: cover;
+    position: absolute;
+    top:0;
+    left:0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -100;
+}
+
 .btn-primary {
     --bs-btn-color: #fff;
     --bs-btn-bg: #ff2020;
@@ -25,6 +36,24 @@
 
 h2 {
     font-size: 1.2em;
+}
+
+.separator{
+    height:5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.separator.background{
+    background-color: rgba(44, 37, 37, 0.5);
+    margin:1em 25%;
+    position:relative;
+    width:50%;
+}
+
+.separator h2{
+    padding:1rem;
+    font-size: 2em;
 }
 
 .invalid-feedback {

@@ -45,9 +45,13 @@ public class SecurityController {
     }
 
     @GetMapping(value = UrlRoute.URL_LOGIN)
-    public ModelAndView login(ModelAndView mav, String error) {
+    public ModelAndView login(ModelAndView mav, String error,Principal principal) {
         if (error != null) {
             mav.addObject("error", "Your username or password is invalid.");
+        }
+        if(principal != null){
+            mav.setViewName("redirect:/");
+            return mav;
         }
         mav.setViewName("security/login");
         return mav;

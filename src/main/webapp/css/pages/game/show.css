@@ -4,5 +4,20 @@
 
 .review-card{
     max-width:24rem;
-    min-height:20rem;
+    min-height:16rem;
+}
+
+.not-hovered:not(.hovered){
+    transition: all 0.3s ease-in;
+    opacity:30%
+}
+
+
+.main {
+    display:flex;
+    flex-direction: column;
+}
+
+.game.background{
+    background-color: hsla(0, 12%, 20%, 0.8);
 }

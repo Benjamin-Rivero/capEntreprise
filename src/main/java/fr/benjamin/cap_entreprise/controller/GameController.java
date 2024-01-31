@@ -1,6 +1,7 @@
 package fr.benjamin.cap_entreprise.controller;
 
 import fr.benjamin.cap_entreprise.DTO.GameDTO;
+import fr.benjamin.cap_entreprise.DTO.ReviewDTO;
 import fr.benjamin.cap_entreprise.entity.Game;
 import fr.benjamin.cap_entreprise.entity.Moderator;
 import fr.benjamin.cap_entreprise.entity.User;
@@ -17,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -32,6 +34,7 @@ public class GameController {
     private final ClassificationService classificationService;
     private final PlatformService platformService;
     private final BusinessModelService businessModelService;
+    private final ReviewService reviewService;
 
     @GetMapping(path= UrlRoute.URL_GAME,name = "list")
     public ModelAndView list(
@@ -51,12 +54,45 @@ public class GameController {
     @GetMapping(path=UrlRoute.URL_GAME_ID,name="show")
     public ModelAndView show(
             @PathVariable Long id,
-            ModelAndView mav
+            ModelAndView mav,
+            @PageableDefault(
+                    size = 6,
+                    sort = {"createdAt"},
+                    direction = Sort.Direction.DESC
+            ) Pageable pageable,
+            Principal principal
     ){
+        if (principal != null) {
+            mav.addObject("reviewDto", new ReviewDTO());
+        }
         Game game = gameService.findById(id);
         mav.addObject("game",game);
+        mav.addObject("reviews", reviewService.findByGameAndModeratorNotNull(game,pageable));
         mav.addObject("game_logos",platformService.getPlatformLogos(game.getPlatforms()));
         mav.setViewName("game/show");
+        return mav;
+    }
+
+    @PostMapping(UrlRoute.URL_GAME_ID)
+    public ModelAndView show(
+            @PathVariable Long id,
+            ModelAndView mav,
+            Principal principal,
+            @ModelAttribute("reviewDto") ReviewDTO reviewDTO,
+            BindingResult result,
+            RedirectAttributes redirectAttributes
+    ) {
+        if (result.hasErrors()) {
+            mav.setViewName("game/show");
+            return mav;
+        }
+        reviewService.createReview(
+                reviewDTO,
+                gameService.findById(id),
+                principal.getName()
+        );
+
+        mav.setViewName("redirect:" + UrlRoute.URL_GAME + "/" + id);
         return mav;
     }
 

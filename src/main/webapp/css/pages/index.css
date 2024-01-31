@@ -3,3 +3,21 @@
     color: #ff4020;
     font-size: 1.1em;
 }
+
+.home-carousel{
+    margin-left:31em;
+    width:20rem;
+    height:28rem;
+}
+
+.home-carousel img{
+    object-fit:cover;
+    width:20rem;
+    height:28rem;
+}
+
+.carousel-caption{
+    background-color: hsla(0, 0%, 50%,0.8);
+    font-size: 1.5em;
+    border-radius: 5px;
+}
