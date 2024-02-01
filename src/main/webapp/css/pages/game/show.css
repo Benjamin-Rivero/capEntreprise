@@ -20,4 +20,12 @@
 
 .game.background{
     background-color: hsla(0, 12%, 20%, 0.8);
+    border-radius: 10px;
+    border : solid 2px rgb(136, 130, 130);
+}
+
+.div-review-game{
+    background-color: rgb(41, 35, 35);
+    border : solid 2px rgb(136, 130, 130);
+    border-radius: 10px;
 }

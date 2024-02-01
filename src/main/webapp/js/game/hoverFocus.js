@@ -24,6 +24,6 @@ function process(value){
     }
 }
 
-window.addEventListener('load',()=>{
+window.addEventListener('DOMContentLoaded',()=>{
     hoverFocus();
 })

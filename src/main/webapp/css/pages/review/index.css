@@ -7,6 +7,10 @@
     color:cornflowerblue;
 }
 
-.jsp{
+.review-table{
     background-color: rgba(44, 37, 37, 0.75);
+    border-radius: 10px;
+    border:solid 2px rgb(136, 130, 130);
+    padding: 0 2rem;
+    padding-bottom: 2rem;
 }

@@ -5,7 +5,7 @@
 <script type="text/javascript" src="/js/review/filter.js"></script>
 
 
-    <div class="jsp">
+    <div class="review-table">
     <div class="d-flex justify-content-between">
         <div class="d-flex">
             <!-- Label à afficher -->

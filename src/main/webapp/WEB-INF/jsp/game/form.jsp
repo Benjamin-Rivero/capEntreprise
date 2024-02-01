@@ -6,7 +6,7 @@
 
 
         <c:if test="${isEdit}">
-            <h1>Modification Jeu ${game.name}</h1>
+            <h1>Modification ${game.name}</h1>
         </c:if>
         <c:if test="${!isEdit}">
             <h1>Creation Jeu</h1>

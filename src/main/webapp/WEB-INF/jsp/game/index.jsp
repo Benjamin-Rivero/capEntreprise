@@ -42,7 +42,10 @@
     <c:forEach items="${games.content}" var="game">
         <div class="game-card card col-md-3 col-sm-12 bg-dark my-3" not-hovered>
             <a href="/jeu/${game.id}">
-            <img src="${game.image}" class="card-img-top img-fluid card-img mt-2" alt="Image needed">
+            <img src="${game.image}" class="card-img-top img-fluid card-img mt-2">
+            <c:if test="${game.image.equals('')}">
+                <img src="resources/image/No-Image.svg" class="card-img-top img-fluid card-img mt-2">
+            </c:if>
             </a>
             <div class="card-body bg-dark my-auto">
                 <a href="/jeu/${game.id}" class="link-if"><h5 class="card-title">${game.name}</h5></a>

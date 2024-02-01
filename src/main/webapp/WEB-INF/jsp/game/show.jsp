@@ -10,9 +10,11 @@
             <div class="col-md-1"></div>
             <div class="col-md-5 col-sm-12">
                 <p>Disponible sur
-                <c:forEach items="${game_logos}" var="logo">
-                    <span>${logo}</span>
-                </c:forEach>
+                    <p>
+                        <c:forEach items="${game_logos}" var="logo">
+                            <span>${logo}</span>
+                        </c:forEach>
+                    </p>
                 </p>
                 <p>Publié le ${game.publishedAt}</p>
                 <p>Editeur : ${game.publisher.name}</p>
@@ -22,51 +24,57 @@
 
                 <p>${game.description}</p>
             </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-5 col-sm-12">
-                <img src="${game.image}" class="img-fluid">
+
+            <div class="col-md-5 col-sm-12 mb-5 ms-4">
+                <img src="${game.image}" class="img-fluid w-75">
             </div>
+            <div class="col-md-1"></div>
         </div>
         <div class="separator game-review"></div>
         <script src="/js/game/hide-form.js"></script>
-        <div class="row ms-5 mb-4" id="reviews">
-        <h2 class="fs-2">Commentaires
-            <security:authorize access="!hasRole('MODERATOR')">
-                <button class="ms-2 btn btn-link"
-                        title="Ajouter un commentaire"
-                        data-hide-show-button="formReview"
+        <div class="row">
+            <h2 class="fs-2">Commentaires
+                    <security:authorize access="!hasRole('MODERATOR')">
+                        <button class="ms-2 btn btn-link"
+                                title="Ajouter un commentaire"
+                                data-hide-show-button="formReview"
+                        >
+                            <i class="fa fa-pen fa-2x"></i>
+                        </button>
+                    </security:authorize>
+                </h2>
+                <div class="col-2"></div>
+                <div class="my-3 p-4 col-8 d-none div-review-game"
+                     data-hide-show-container="formReview"
                 >
-                    <i class="fa fa-pen fa-2x"></i>
-                </button>
-            </security:authorize>
-        </h2>
-        <div class="my-3 d-none"
-             data-hide-show-container="formReview"
-        >
-            <f:form cssClass="col-md-8 col-sm-12 mx-auto"
-                    action="${currentUrl}"
-                    method="post"
-                    modelAttribute="reviewDto"
-            >
-                <div class="mb-3 row">
-                    <f:label path="description" class="col-sm-2 col-form-label">Description</f:label>
-                    <div class="col-sm-10">
-                        <f:textarea cssClass="form-control" path="description"/>
-                        <f:errors path="description" cssClass="invalid-feedback"/>
-                    </div>
+                    <f:form cssClass="col-sm-12 mx-auto"
+                            action="${currentUrl}"
+                            method="post"
+                            modelAttribute="reviewDto"
+                    >
+                        <div class="mb-3 row">
+                            <f:label path="description" class="col-sm-2 col-form-label">Description</f:label>
+                            <div class="col-sm-10">
+                                <f:textarea cssClass="form-control" path="description"/>
+                                <f:errors path="description" cssClass="invalid-feedback"/>
+                            </div>
+                        </div>
+                        <div class="my-3 row">
+                            <f:label path="rating" class="col-sm-2 col-form-label">Note</f:label>
+                            <div class="col-sm-10">
+                                <f:input type="number" step="0.5" cssClass="form-control" path="rating"/>
+                                <f:errors path="rating" cssClass="invalid-feedback"/>
+                            </div>
+                        </div>
+                        <f:button type="submit" class="btn btn-success">
+                            <i class="fa fa-check"></i> Ajouter
+                        </f:button>
+                    </f:form>
                 </div>
-                <div class="my-3 row">
-                    <f:label path="rating" class="col-sm-2 col-form-label">Note</f:label>
-                    <div class="col-sm-10">
-                        <f:input type="number" step="0.5" cssClass="form-control" path="rating"/>
-                        <f:errors path="rating" cssClass="invalid-feedback"/>
-                    </div>
-                </div>
-                <f:button type="submit" class="btn btn-success">
-                    <i class="fa fa-check"></i> Ajouter
-                </f:button>
-            </f:form>
+                <div class="col-2"></div>
         </div>
+        <div class="row ms-5 mb-4" id="reviews">
+
         <c:set var="scroll" value="#reviews"/>
                 <c:forEach items="${reviews.content}" var="review">
                     <c:if test="${review.moderator != null}">
