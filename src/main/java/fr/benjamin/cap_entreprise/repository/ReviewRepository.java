@@ -28,4 +28,10 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     Page<Review> findAllByModeratorNullAndGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase(String search1, String search2, Pageable pageable);
 
     Page<Review> findByGameAndModeratorNotNull(Game game, Pageable pageable);
+
+    Page<Review> findByModeratorIsNotNullOrPlayerUsername(String nickname, Pageable pageable);
+
+    Page<Review> findByModeratorIsNull(Pageable pageable);
+
+    Page<Review> findByModeratorIsNotNull(Pageable pageable);
 }

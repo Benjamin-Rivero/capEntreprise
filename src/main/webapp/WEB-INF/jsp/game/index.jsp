@@ -44,7 +44,7 @@
             <a href="/jeu/${game.id}">
             <img src="${game.image}" class="card-img-top img-fluid card-img mt-2">
             <c:if test="${game.image.equals('')}">
-                <img src="resources/image/No-Image.svg" class="card-img-top img-fluid card-img mt-2">
+                <img src="https://images-ext-1.discordapp.net/external/qVaMgLkFPmHnCwK8eszT0pLSf52chS7j5WmPG8H-OP0/https/media.tenor.com/d86y4TQvB7AAAAAi/dancing-cockroach.gif" class="card-img-top img-fluid card-img mt-2">
             </c:if>
             </a>
             <div class="card-body bg-dark my-auto">

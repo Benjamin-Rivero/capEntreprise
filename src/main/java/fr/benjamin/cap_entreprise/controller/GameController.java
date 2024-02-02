@@ -45,7 +45,6 @@ public class GameController {
                     direction = Sort.Direction.DESC
             )Pageable pageable
             ){
-        gameService.test();
         mav.setViewName("game/index");
         mav.addObject("games",gameService.findAll(pageable));
         return mav;

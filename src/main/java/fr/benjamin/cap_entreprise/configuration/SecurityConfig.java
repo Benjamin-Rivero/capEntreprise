@@ -17,6 +17,7 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth ->
                 auth
+                        .requestMatchers("/avis/nouveau").hasRole("PLAYER")
                         .requestMatchers("/jeu/{id}/upload/game_image").hasRole("MODERATOR")
                         .requestMatchers("/avis/{id}/refuse").hasRole("MODERATOR")
                         .requestMatchers("/avis/{id}/validate").hasRole("MODERATOR")

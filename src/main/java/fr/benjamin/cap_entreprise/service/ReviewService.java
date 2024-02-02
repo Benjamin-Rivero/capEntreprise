@@ -1,10 +1,7 @@
 package fr.benjamin.cap_entreprise.service;
 
 import fr.benjamin.cap_entreprise.DTO.ReviewDTO;
-import fr.benjamin.cap_entreprise.entity.Game;
-import fr.benjamin.cap_entreprise.entity.Moderator;
-import fr.benjamin.cap_entreprise.entity.Player;
-import fr.benjamin.cap_entreprise.entity.Review;
+import fr.benjamin.cap_entreprise.entity.*;
 import fr.benjamin.cap_entreprise.repository.ReviewRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -67,11 +64,11 @@ public class ReviewService {
                 return reviewRepository.findAllByGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase
                         (search1, search2, username, page);
             }
-            if (moderation != null && moderation.equals("1")) {
+            if (moderation.equals("1")) {
                 return reviewRepository.findAllByModeratorNullAndGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase
                         (search1, search2, page);
             }
-            if (moderation != null && moderation.equals("2")) {
+            if (moderation.equals("2")) {
                 return reviewRepository.findAllByModeratorNotNullAndGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase
                         (search1, search2, page);
             }
@@ -131,4 +128,27 @@ public class ReviewService {
         }
         return orders;
     }*/
+
+    public Page<Review> findByUserNickname(String nickname, Pageable pageable) {
+        return reviewRepository.findByModeratorIsNotNullOrPlayerUsername(nickname, pageable);
+    }
+
+    public Page<Review> getPageReviewByNickname(String nickname, Pageable pageable) {
+        User user = userService.findByUsername(nickname);
+        Page<Review> pageReviews = findByUserNickname(nickname, pageable);
+        if (user.isModerator()) {
+            Sort.Order order = pageable.getSort().getOrderFor("moderator");
+            if (order != null) {
+                if (order.isAscending()) {
+                    pageReviews = reviewRepository.findByModeratorIsNull(pageable);
+                } else {
+                    pageReviews = reviewRepository.findByModeratorIsNotNull(pageable);
+                }
+            } else {
+                pageReviews = reviewRepository.findAll(pageable);
+            }
+        }
+        return pageReviews;
+    }
+
 }

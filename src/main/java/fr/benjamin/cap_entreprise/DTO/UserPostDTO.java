@@ -15,17 +15,17 @@ import java.time.LocalDate;
 @Getter@Setter@NoArgsConstructor@AllArgsConstructor
 public class UserPostDTO {
 
-    @Email(message = "Please, give a valid email")
-    @NotBlank(message = "Please, give an email")
+    @Email(message = "Veuillez mettre un email valide")
+    @NotBlank(message = "Veuillez mettre un email")
     private String email;
 
-    @NotBlank(message = "Please, give a proper name")
-    @Size(message = "The account name must have at least 5 characters", min = 5)
+    @NotBlank(message = "Veuillez mettre un nom de compte")
+    @Size(message = "Le nom du compte doit avoir 5 caractères minimum", min = 5)
     @UniqueUsername
     private String username;
 
-    @NotBlank(message = "Please, the password must have a value")
-    @Size(message = "The password must have at least 8 characters", min = 8)
+    @NotBlank(message = "Veuillez mettre un mot de passe")
+    @Size(message = "Le mot de passe doit avoir 5 caractères minimum", min = 5)
     private String password;
 
     @NotNull

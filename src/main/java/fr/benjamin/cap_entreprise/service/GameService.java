@@ -57,11 +57,11 @@ public class GameService implements SortingService<Game>{
         return this.gameRepository.saveAndFlush(game);
     }
 
-    public void test(){
+    /*public void test(){
         gameRepository.findTop20ByOrderByCountReview().forEach(game -> {
             System.out.println(game.getId());
         });
-    }
+    }*/
 
     public GameDTO getDTOById(Long id) {
         Game game = findById(id);

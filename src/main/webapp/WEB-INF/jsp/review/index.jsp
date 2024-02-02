@@ -43,11 +43,16 @@
             </div>
             <security:authorize access="hasRole('MODERATOR')">
                 <div class="d-flex mt-4 mx-4">
-                    <select class="form-select" moderationFilter>
-                        <option value="0" selected>All</option>
-                        <option value="1">Non modéré</option>
-                        <option value="2">Modéré</option>
-                    </select>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" btn-selector>
+                        Tous les commentaires
+                      </button>
+                      <ul class="dropdown-menu bg-dark">
+                        <li><a class="dropdown-item text-warning" href="/avis" moderationFilter>Tous les commentaires</a></li>
+                        <li><a class="dropdown-item text-bg-dark" href="/avis?moderation=1" moderationFilter>Non modérés</a></li>
+                        <li><a class="dropdown-item text-bg-dark" href="/avis?moderation=2" moderationFilter>Modérés</a></li>
+                      </ul>
+                    </div>
                 </div>
             </security:authorize>
         </div>

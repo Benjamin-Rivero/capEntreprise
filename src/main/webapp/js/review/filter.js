@@ -32,7 +32,7 @@ window.addEventListener('load',()=>{
 })
 
 function moderationFilter(){
-    const selector = document.querySelector("select[moderationFilter]");
+    /* const selector = document.querySelector("select[moderationFilter]");
     var url = new URL(location.href);
     if(selector){
         selector.addEventListener('change',()=>{
@@ -51,6 +51,20 @@ function moderationFilter(){
         const val = url.searchParams.get("moderation");
         if(val && parseInt(val)>=0){
             selector.value=val;
+        }
+    } */
+    const btn = document.querySelector("[btn-selector]");
+    if(btn){
+        var url = new URL(location.href);
+        const parameter = url.searchParams.get("moderation");
+        console.log(parameter);
+        if(parameter){
+            if(parameter==="1"){
+                btn.innerHTML = "Non modérés";
+            }
+            if(parameter==="2"){
+                btn.innerHTML = "Modérés";
+            }
         }
     }
 }

@@ -118,11 +118,11 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             platform.setLogo(logo.get((int)i));
             platformRepository.save(platform);
         }
-        createNomenclatures(
+        /*createNomenclatures(
                 platformRepository,
                 Platform.class,
                 List.of("Switch", "PC", "PS5", "PS4", "PS3", "XBOX Series X", "XBOX One")
-        );
+        );*/
     }
 
     private void createPublishers() {

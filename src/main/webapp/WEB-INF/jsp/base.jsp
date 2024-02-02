@@ -30,17 +30,17 @@
 
                     <security:authorize access="!isAuthenticated()">
                         <div class="d-flex justify-content-end">
-                            <a class="nav-link" href="${contextPath}/register">Register</a>
+                            <a class="nav-link" href="${contextPath}/register">S'enregistrer</a>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a class="nav-link" href="${contextPath}/login">Login</a>
+                            <a class="nav-link" href="${contextPath}/login">Se connecter</a>
                         </div>
                     </security:authorize>
                     <security:authorize access="isAuthenticated()">
                         <div class="d-flex justify-content-end">
                             <span class="mt-2">Bonjour <security:authentication property="name"/></span>
                             <form method="POST" action="${contextPath}/logout" autocomplete="off">
-                                <button type="submit" tabindex="3" class="btn btn-link">Logout</button>
+                                <button type="submit" tabindex="3" class="btn btn-link">Se déconnecter</button>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             </form>
                         </div>

@@ -1,0 +1,10 @@
+.ouiKevinCestMoche{
+    background-image : url("../moche2.png");
+    position:absolute;
+    left:0;
+    top:0;
+    background-size: contain;
+    min-width:100%;
+    min-height:100%;
+    z-index: -1;
+}
